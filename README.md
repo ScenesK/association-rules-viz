@@ -1,6 +1,13 @@
 # association-rules-viz
 Visualization library for association analysis
 
+## Requirements
+
+- NumPy
+- Pandas
+- Matplotlib
+- NetworkX
+
 ## Usage
 
 ```python
