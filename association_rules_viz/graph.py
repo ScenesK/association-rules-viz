@@ -95,5 +95,4 @@ def graph(lhs,
         for child in ax.get_children():
             if isinstance(child, mpl.text.Text):
                 child.set(clip_on=False)
-        nx.draw_networkx_nodes()
     plt.show()
