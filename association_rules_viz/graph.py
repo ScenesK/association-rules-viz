@@ -37,6 +37,7 @@ def graph(lhs,
         rows, cols, figsize=(cols * fig_scale, rows * fig_scale))
     data.loc[:, support] = data[support] / data[support].max() * 500
 
+    pc = None
     for i, ((row, col), ax) in enumerate(np.ndenumerate(axes)):
         ax.axis('off')
         if col == cols - 1:
@@ -57,7 +58,7 @@ def graph(lhs,
             g.add_node(
                 name,
                 label=', '.join(node),
-                size=data.loc[index, support],
+                size=data.loc[index, support].values[0],
                 color=data.loc[index, lift])
             g.add_edge(
                 center, name, weight=data.loc[index, confidence].values[0])
@@ -65,7 +66,7 @@ def graph(lhs,
         pos[center] = np.zeros(2)
         nodelist = g.nodes
         sizes = nx.get_node_attributes(g, 'size')
-        node_size = np.array([sizes[key] for key in nodelist])
+        node_size = [sizes[key] for key in nodelist]
         colors = nx.get_node_attributes(g, 'color')
         node_color = [colors[key] for key in nodelist]
         vmax = np.abs(data[lift]).max()
